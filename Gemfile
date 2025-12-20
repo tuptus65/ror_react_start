@@ -55,6 +55,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "annotaterb"
 end
 
 group :test do
@@ -65,3 +66,7 @@ end
 
 gem "inertia_rails", "~> 3.15"
 gem "vite_rails", "~> 3.0"
+gem "js-routes"
+gem "rails-i18n"
+gem "role_model"
+gem "pundit"

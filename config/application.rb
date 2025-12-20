@@ -23,5 +23,11 @@ module RorReactStart
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.i18n.default_locale = :pl
+    config.i18n.available_locales = [ :pl, :en ]
+    config.i18n.fallbacks = { pl: :en }
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
+    config.time_zone = "Warsaw"
   end
 end

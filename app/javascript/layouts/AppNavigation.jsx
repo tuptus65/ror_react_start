@@ -1,14 +1,16 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from "@inertiajs/react";
+import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/react'
+import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
+import {Link, usePage} from "@inertiajs/react";
+import {login_path, logout_path} from "@/routes";
+import Avatar from "~/components/Avatar";
 
 import turoxLogo from '../assets/turox_logo_full.png'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  {name: 'Dashboard', href: '#', current: true},
+  {name: 'Team', href: '#', current: false},
+  {name: 'Projects', href: '#', current: false},
+  {name: 'Calendar', href: '#', current: false},
 ]
 
 function classNames(...classes) {
@@ -16,17 +18,20 @@ function classNames(...classes) {
 }
 
 function AppNavigation() {
+  const {user} = usePage().props
+
   return (
       <Disclosure as="nav" className="relative border-b border-gray-300">
         <div className="container mx-auto">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button*/}
-              <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
-                <span className="absolute -inset-0.5" />
+              <DisclosureButton
+                  className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+                <span className="absolute -inset-0.5"/>
                 <span className="sr-only">Open main menu</span>
-                <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
-                <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
+                <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden"/>
+                <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block"/>
               </DisclosureButton>
             </div>
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -54,61 +59,70 @@ function AppNavigation() {
                         {item.name}
                       </a>
                   ))}
+                  {(user && user.canViewPanel) && (
+                      <a
+                          href="#"
+                          className={
+                              'rounded-md px-3 py-2 text-sm font-medium'
+                          }
+                      >
+                        {'Panel'}
+                      </a>
+
+                  )}
                 </div>
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button
-                  type="button"
-                  className="relative rounded-full p-1 text-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
-              >
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="size-6" />
-              </button>
-
               {/* Profile dropdown */}
-              <Menu as="div" className="relative ml-3">
-                <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                      alt=""
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
-                  />
-                </MenuButton>
+              {user && (
+                  <Menu as="div" className="relative ml-3">
+                    <MenuButton
+                        className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                      <span className="absolute -inset-1.5"/>
+                      <span className="sr-only">Open user menu</span>
+                      <Avatar
+                        user={user}
+                        size={48}
+                      />
+                    </MenuButton>
 
-                <MenuItems
-                    transition
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
-                >
-                  <MenuItem>
-                    <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                    <MenuItems
+                        className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                     >
-                      Your profile
-                    </a>
-                  </MenuItem>
-                  <MenuItem>
-                    <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                    >
-                      Settings
-                    </a>
-                  </MenuItem>
-                  <MenuItem>
-                    <a
-                        href="#"
-                        className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                    >
-                      Sign out
-                    </a>
-                  </MenuItem>
-                </MenuItems>
-              </Menu>
+                      <MenuItem>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                        >
+                          Your profile
+                        </a>
+                      </MenuItem>
+                      <MenuItem>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                        >
+                          Settings
+                        </a>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link
+                            href={logout_path()}
+                            method='delete'
+                            className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden w-full text-left"
+                        >
+                          Logout
+                        </Link>
+                      </MenuItem>
+                    </MenuItems>
+                  </Menu>
+              )}
+              {!user && (
+                  <Link href={login_path()}>
+                    Login
+                  </Link>
+              )}
             </div>
           </div>
         </div>

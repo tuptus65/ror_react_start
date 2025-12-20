@@ -7,3 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+if User.count == 0
+  first_user = User.create!(
+    name: "root",
+    email: "root@domain.tld",
+    password: "password"
+  )
+
+  first_user.roles = [ :root ]
+  first_user.confirmed_at = Time.now
+  first_user.save
+end
