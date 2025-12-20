@@ -2,3 +2,10 @@
 
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
+
+@utility bg-application {
+    background:
+            url("/assets/backgroundright.jpg") right top repeat-y,
+            url("/assets/backgroundleft.jpg") left top repeat-y,
+            url("/assets/background.jpg") center top repeat;
+}

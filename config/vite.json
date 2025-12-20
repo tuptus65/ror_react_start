@@ -4,6 +4,7 @@
     "watchAdditionalPaths": []
   },
   "development": {
+    "host": "0.0.0.0",
     "autoBuild": true,
     "publicOutputDir": "vite-dev",
     "port": 3036
