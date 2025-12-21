@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   get "login" => "session#new"
   post "login" => "session#create"
   delete "logout" => "session#destroy"
-  resources :users
+  namespace :admin do
+    root "dashboard#index"
+    resources :users
+  end
   get "home/index"
   root "home#index"
 

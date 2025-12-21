@@ -1,0 +1,27 @@
+pl:
+  activerecord:
+    models:
+      user: "Użytkownik"
+    attributes:
+      user:
+        name: "Login"
+        email: "E-mail"
+        roles: "Uprawnienia"
+        roles_mask: "Uprawnienia"
+        password: "Hasło"
+        password_confirmation: "Potwierdź hasło"
+        created_at: "Utworzono"
+  admin/users:
+    Update_password: "Zmień hasło"
+    flash:
+      create: "Użytkownik utworzony"
+      update: "Użytkownik zaktualizowany"
+    index:
+      title: "Lista użytkowników"
+      new_user: "Nowy użytkownik"
+    new:
+      title: "Nowy użytkownik"
+    edit:
+      title: "Edycja konta"
+    rights:
+      Rights_for: "Uprawnienia dla: %{resource}"

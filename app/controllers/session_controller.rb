@@ -1,4 +1,4 @@
-class SessionController < ApplicationController
+class SessionController < InertiaController
   def new
     skip_authorization
     render inertia: 'sessions/New'

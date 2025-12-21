@@ -1,7 +1,7 @@
 import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/react'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import {Link, usePage} from "@inertiajs/react";
-import {login_path, logout_path} from "@/routes";
+import {login_path, logout_path, admin_root_path } from "@/routes";
 import Avatar from "~/components/Avatar";
 
 import turoxLogo from '../assets/turox_logo_full.png'
@@ -61,7 +61,7 @@ function AppNavigation() {
                   ))}
                   {(user && user.canViewPanel) && (
                       <a
-                          href="#"
+                          href={admin_root_path()}
                           className={
                               'rounded-md px-3 py-2 text-sm font-medium'
                           }

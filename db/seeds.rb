@@ -8,7 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+require 'active_record/fixtures'
+
 if User.count == 0
+  ActiveRecord::FixtureSet.create_fixtures('test/fixtures', 'users')
   first_user = User.create!(
     name: "root",
     email: "root@domain.tld",

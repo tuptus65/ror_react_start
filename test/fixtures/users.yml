@@ -22,18 +22,26 @@
 #  index_users_on_name                (name) UNIQUE
 #  index_users_on_token               (token) UNIQUE
 #
-one:
-  name: MyString
-  email: MyString
-  password_digest: MyString
-  avatar: MyString
-  roles_mask: 1
-  confirmed_at: 2025-12-20 19:19:43
+admin:
+  name: admin
+  email: admin@domain.tld
+  password_digest: <%= BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST) %>
+  avatar: nil
+  roles_mask: 2
+  confirmed_at: <%= Time.now %>
 
-two:
-  name: MyString
-  email: MyString
-  password_digest: MyString
-  avatar: MyString
-  roles_mask: 1
-  confirmed_at: 2025-12-20 19:19:43
+first:
+  name: first
+  email: first@domain.tld
+  password_digest: <%= BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST) %>
+  avatar: nil
+  roles_mask: 3
+  confirmed_at: <%= Time.now %>
+
+second:
+  name: second
+  email: second@domain.tld
+  password_digest: <%= BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST) %>
+  avatar: nil
+  roles_mask: 3
+  confirmed_at: <%= Time.now %>

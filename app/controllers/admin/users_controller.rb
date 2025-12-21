@@ -1,13 +1,16 @@
-class UsersController < InertiaController
+class Admin::UsersController < InertiaController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users
   def index
-    @users = User.all
+    authorize User
+    @pagy, @users = pagy(policy_scope(User).order(:name))
     render inertia: {
       users: @users.map do |user|
         serialize_user(user)
-      end
+      end,
+      i18n: { attribute_names: attribute_names("user") },
+      pagination: @pagy.data_hash
     }
   end
 
@@ -75,6 +78,10 @@ class UsersController < InertiaController
         :id, :name, :email, :avatar
       ]).merge(
         roles: user.roles.to_a
+      ).merge(
+        'canView': policy(user).show?,
+        'canEdit': policy(user).update?,
+        'canDelete': policy(user).destroy?
       )
     end
 end
