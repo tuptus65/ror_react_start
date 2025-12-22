@@ -5,7 +5,7 @@ import InputLabel from "../../components/InputLabel";
 import PrimaryButton from "../../components/PrimaryButton";
 import useI18n from "../../utils/useI18n";
 import {Head, useForm, usePage } from "@inertiajs/react";
-import { login_path } from "../../routes";
+import { login_path } from "../../routes.js";
 
 function New() {
   const {t} = useI18n();

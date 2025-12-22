@@ -1,7 +1,7 @@
 import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/react'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import {Link, usePage} from "@inertiajs/react";
-import {login_path, logout_path, admin_root_path, admin_users_path } from "@/routes";
+import {login_path, logout_path, admin_root_path, admin_users_path } from "@/routes.js";
 import useI18n from "../utils/useI18n";
 import Avatar from "~/components/Avatar";
 

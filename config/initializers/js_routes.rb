@@ -1,7 +1,7 @@
 JsRoutes.setup do |c|
   # Setup your JS module system:
   # ESM, CJS, AMD, UMD or nil.
-  # c.module_type = "ESM"
+  c.module_type = "ESM"
 
   # Legacy setup for no modules system.
   # Sets up a global variable `Routes`
@@ -24,4 +24,7 @@ JsRoutes.setup do |c|
 
   # More options:
   # @see https://github.com/railsware/js-routes#available-options
+  if c.respond_to?(:exclude_umd=)
+    c.exclude_umd = true
+  end
 end

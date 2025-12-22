@@ -2,7 +2,7 @@ import { Head, Link } from '@inertiajs/react'
 import AdminLayout from "@/layouts/AdminLayout";
 import Pagy from "@/components/Pagy";
 import useI18n from "@/utils/useI18n";
-import {edit_admin_user_path, new_admin_user_path, admin_user_path} from "@/routes";
+import {edit_admin_user_path, new_admin_user_path, admin_user_path} from "@/routes.js";
 import {LiaEdit, LiaTrashAlt} from "react-icons/lia";
 import Table from "@/components/Table";
 import TableHead from "@/components/TableHead";
