@@ -1,0 +1,27 @@
+en:
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        name: "Username"
+        email: "Email"
+        roles: "Roles"
+        roles_mask: "Roles mask"
+        password: "Password"
+        password_confirmation: "Confirm password"
+        created_at: "Created at"
+  users:
+    Update_password: "Change password"
+    flash:
+      create: "User created successfully"
+      update: "User updated successfully"
+    index:
+      title: "Users list"
+      new_user: "New user"
+    new:
+      title: "New user"
+    edit:
+      title: "Edit account"
+    rights:
+      Rights_for: "Permissions for: %{resource}"

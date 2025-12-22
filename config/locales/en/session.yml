@@ -1,0 +1,6 @@
+en:
+  session:
+    new:
+      Login: "Login"
+      name: "Username"
+      password: "Password"

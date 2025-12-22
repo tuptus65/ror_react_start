@@ -9,7 +9,6 @@ class Admin::UsersController < InertiaController
       users: @users.map do |user|
         serialize_user(user)
       end,
-      i18n: { attribute_names: attribute_names("user") },
       pagination: @pagy.data_hash
     }
   end

@@ -1,27 +1,36 @@
-import { usePage } from '@inertiajs/react';
-import get from 'lodash/get';
+// app/javascript/utils/useI18n.js
+import { I18n } from "i18n-js";
+import { usePage } from "@inertiajs/react";
+import translations from "../locales.json"; // Plik wygenerowany przez i18n-js export
 
-const useI18n = () => {
-  const { i18n } = usePage().props;
+// Inicjalizacja instancji poza hookiem (Singleton)
+const i18n = new I18n(translations);
 
-  const t = (key, params = {}) => {
-    let translation = get(i18n, key);
+export const useI18n = () => {
+  const { props } = usePage();
 
-    if (!translation) {
-      console.warn(`Missing translation for key: ${key}`);
-      return `[MISSING: ${key}]`;
-    }
+  // Pobieramy aktualny język z shared props (np. z application_controller.rb)
+  const currentLocale = props.locale || 'pl';
+  i18n.locale = currentLocale;
 
-    // 3. Interpolacja parametrów (zamiana %{param} na wartość)
-    // To jest uproszczona wersja, która może wymagać bardziej zaawansowanej biblioteki do interpolacji
-    Object.keys(params).forEach(param => {
-      translation = translation.replace(new RegExp(`%\{${param}\}`, 'g'), params[param]);
-    });
-
-    return translation;
+  /**
+   * Funkcja tłumacząca
+   * @param {string} key - Klucz tłumaczenia
+   * @param {object} options - Parametry (np. count dla paginacji)
+   */
+  const t = (key, options = {}) => {
+    return i18n.t(key, options);
   };
 
-  return { t };
-};
+  /**
+   * Odpowiednik Railsowego Model.human_attribute_name(attr)
+   * @param {string} modelName - nazwa modelu (np. 'user')
+   * @param {string} attribute - nazwa pola (np. 'email')
+   */
+  const h = (modelName, attribute) => {
+    // Rails szuka w activerecord.attributes.model.attribute
+    return t(`activerecord.attributes.${modelName.toLowerCase()}.${attribute}`);
+  };
 
-export default useI18n;
+  return { t, h, locale: currentLocale, i18n };
+};

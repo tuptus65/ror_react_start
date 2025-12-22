@@ -53,3 +53,6 @@ node_modules
 # Ignore automatically generated js-routes files.
 /app/javascript/routes.js
 /app/javascript/routes.d.ts
+
+# Ignore automatically generated i18n-js files.
+/app/javascript/locale.json

@@ -11,7 +11,7 @@ pl:
         password: "Hasło"
         password_confirmation: "Potwierdź hasło"
         created_at: "Utworzono"
-  admin/users:
+  users:
     Update_password: "Zmień hasło"
     flash:
       create: "Użytkownik utworzony"
