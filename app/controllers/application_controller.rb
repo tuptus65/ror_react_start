@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    render inertia: 'errors/NotAuthorized', status: 403
+    render inertia: "errors/NotAuthorized", status: 403
   end
 end

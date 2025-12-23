@@ -23,7 +23,7 @@ class Admin::UsersController < InertiaController
   # GET /users/new
   def new
     @user = User.new
-    @user.roles = [:user]
+    @user.roles = [ :user ]
     authorize @user
 
     render inertia: {
@@ -89,14 +89,14 @@ class Admin::UsersController < InertiaController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, roles:[])
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, roles: [])
     end
 
     def serialize_user(user)

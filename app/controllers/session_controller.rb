@@ -1,7 +1,7 @@
 class SessionController < InertiaController
   def new
     skip_authorization
-    render inertia: 'sessions/New'
+    render inertia: "sessions/New"
   end
 
   def create
@@ -14,7 +14,7 @@ class SessionController < InertiaController
       redirect_to root_path
     else
       flash.now[:alert] = "Invalid login or password"
-      render inertia: 'sessions/New'
+      render inertia: "sessions/New"
     end
   end
 
