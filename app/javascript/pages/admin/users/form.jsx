@@ -73,6 +73,7 @@ export default function Form({data, setData, errors, processing, submit}) {
                 <img
                     src={URL.createObjectURL(data.user.avatar)}
                     className="mt-2 w-20 h-20 rounded-full object-cover"
+                    alt="Avatar"
                 />
             )}
             <FileInput

@@ -8,7 +8,7 @@ import Table from "@/components/Table";
 import TableHead from "@/components/TableHead";
 import Avatar from "~/components/Avatar";
 
-export default function Index({ users, flash }) {
+export default function Index({ users }) {
   const { t, h } = useI18n();
   const handleDelete = (id) => {
     if (window.confirm(t('common.Are_you_sure'))) {

@@ -3,13 +3,13 @@ import AppLayout from "~/layouts/AppLayout";
 import TextInput from "../../components/TextInput";
 import InputLabel from "../../components/InputLabel";
 import PrimaryButton from "../../components/PrimaryButton";
-import { useI18n } from "../../utils/useI18n";
+import { useI18n } from "@/utils/useI18n";
 import {Head, useForm, usePage } from "@inertiajs/react";
-import { login_path } from "../../routes.js";
+import { login_path } from "@/routes.js";
 
 function New() {
   const {t} = useI18n();
-  const {data, setData, post, processing, reset, errors} = useForm({
+  const {data, setData, post, processing, reset} = useForm({
     name: "",
     password: "",
   });
