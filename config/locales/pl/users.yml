@@ -8,6 +8,7 @@ pl:
         email: "E-mail"
         roles: "Uprawnienia"
         roles_mask: "Uprawnienia"
+        avatar: "Awatar"
         password: "Hasło"
         password_confirmation: "Potwierdź hasło"
         created_at: "Utworzono"

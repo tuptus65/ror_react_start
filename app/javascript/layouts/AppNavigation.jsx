@@ -18,7 +18,7 @@ function classNames(...classes) {
 }
 
 function AppNavigation() {
-  const {user} = usePage().props
+  const {current_user} = usePage().props
 
   return (
       <Disclosure as="nav" className="relative border-b border-gray-300">
@@ -59,7 +59,7 @@ function AppNavigation() {
                         {item.name}
                       </a>
                   ))}
-                  {(user && user.canViewPanel) && (
+                  {(current_user && current_user.canViewPanel) && (
                       <a
                           href={admin_root_path()}
                           className={
@@ -75,14 +75,14 @@ function AppNavigation() {
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               {/* Profile dropdown */}
-              {user && (
+              {current_user && (
                   <Menu as="div" className="relative ml-3">
                     <MenuButton
                         className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                       <span className="absolute -inset-1.5"/>
                       <span className="sr-only">Open user menu</span>
                       <Avatar
-                        user={user}
+                        user={current_user}
                         size={48}
                       />
                     </MenuButton>
@@ -118,7 +118,7 @@ function AppNavigation() {
                     </MenuItems>
                   </Menu>
               )}
-              {!user && (
+              {!current_user && (
                   <Link href={login_path()}>
                     Login
                   </Link>

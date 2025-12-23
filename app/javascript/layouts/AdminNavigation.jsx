@@ -13,7 +13,7 @@ function classNames(...classes) {
 
 function AdminNavigation() {
   const {t} = useI18n();
-  const {user} = usePage().props
+  const {current_user} = usePage().props
   const {url} = usePage()
 
   const navigation = [
@@ -74,14 +74,14 @@ function AdminNavigation() {
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               {/* Profile dropdown */}
-              {user && (
+              {current_user && (
                   <Menu as="div" className="relative ml-3">
                     <MenuButton
                         className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                       <span className="absolute -inset-1.5"/>
                       <span className="sr-only">Open user menu</span>
                       <Avatar
-                          user={user}
+                          user={current_user}
                           size={48}
                       />
                     </MenuButton>
@@ -117,7 +117,7 @@ function AdminNavigation() {
                     </MenuItems>
                   </Menu>
               )}
-              {!user && (
+              {!current_user && (
                   <Link href={login_path()}>
                     Login
                   </Link>

@@ -8,6 +8,7 @@ en:
         email: "Email"
         roles: "Roles"
         roles_mask: "Roles mask"
+        avatar: "Avatar"
         password: "Password"
         password_confirmation: "Confirm password"
         created_at: "Created at"

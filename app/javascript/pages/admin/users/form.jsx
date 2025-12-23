@@ -1,121 +1,126 @@
-import { Form as InertiaForm } from '@inertiajs/react'
+import {usePage} from '@inertiajs/react'
+import {useI18n} from "~/utils/useI18n";
+import Select from "~/components/Select";
+import InputLabel from "~/components/InputLabel";
+import TextInput from "~/components/TextInput";
+import InputError from "~/components/InputError";
+import PrimaryButton from "~/components/PrimaryButton";
+import FileInput from "~/components/FileInput";
 
-export default function Form({ user, submitText, ...formProps }) {
+export default function Form({data, setData, errors, processing, submit}) {
+  const {t, h} = useI18n();
+  const {roles} = usePage().props;
   return (
-    <InertiaForm
-      transform={data => ({ user: data })}
-      className="contents"
-      {...formProps}
-    >
-      {({ errors, processing }) => (
-        <>
-          <div className="my-5">
-            <label htmlFor="name">Name</label>
-            <input
+      <form onSubmit={submit} className="shadow-md rounded-md p-4 mt-4">
+        <div className="my-5">
+          <InputLabel htmlFor="name">{h('user', 'name')}</InputLabel>
+          <TextInput
               type="text"
               name="name"
               id="name"
-              defaultValue={user.name}
+              value={data.user.name}
               className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-            />
-            {errors.name && (
-              <div className="text-red-500 px-3 py-2 font-medium">
-                {errors.name.join(', ')}
-              </div>
-            )}
-          </div>
+              onChange={(e) => setData('user.name', e.target.value)}
+          />
+          <InputError message={errors?.name?.join(', ')} className="mt-2"/>
+        </div>
 
-          <div className="my-5">
-            <label htmlFor="email">Email</label>
-            <input
+        <div className="my-5">
+          <InputLabel htmlFor="email">{h('user', 'email')}</InputLabel>
+          <TextInput
               type="text"
               name="email"
               id="email"
-              defaultValue={user.email}
+              value={data.user.email}
               className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-            />
-            {errors.email && (
-              <div className="text-red-500 px-3 py-2 font-medium">
-                {errors.email.join(', ')}
-              </div>
-            )}
-          </div>
+              onChange={(e) => setData('user.email', e.target.value)}
+          />
+          <InputError message={errors?.email?.join(', ')} className="mt-2"/>
+        </div>
 
-          <div className="my-5">
-            <label htmlFor="password_digest">Password digest</label>
-            <input
-              type="text"
-              name="password_digest"
-              id="password_digest"
-              defaultValue={user.password_digest}
+        <div className="my-5">
+          <InputLabel htmlFor="password">{h('user', 'password')}</InputLabel>
+          <TextInput
+              type="password"
+              name="password"
+              id="password"
+              value={data.user.password}
+              autoComplete="new-password"
+              className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full !bg-white"
+              onChange={(e) => setData('user.password', e.target.value)}
+          />
+          <InputError message={errors?.password?.join(', ')} className="mt-2"/>
+        </div>
+
+        <div className="my-5">
+          <InputLabel htmlFor="password_confirmation">{h('user', 'password_confirmation')}</InputLabel>
+          <TextInput
+              type="password"
+              name="password_confirmation"
+              id="password_confirmation"
+              value={data.user.password_confirmation}
+              autoComplete="new-password"
               className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-            />
-            {errors.password_digest && (
-              <div className="text-red-500 px-3 py-2 font-medium">
-                {errors.password_digest.join(', ')}
-              </div>
-            )}
-          </div>
+              onChange={(e) => setData('user.password_confirmation', e.target.value)}
+          />
+          <InputError message={errors?.password_confirmation?.join(', ')} className="mt-2"/>
+        </div>
 
-          <div className="my-5">
-            <label htmlFor="avatar">Avatar</label>
-            <input
-              type="text"
-              name="avatar"
-              id="avatar"
-              defaultValue={user.avatar}
-              className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-            />
-            {errors.avatar && (
-              <div className="text-red-500 px-3 py-2 font-medium">
-                {errors.avatar.join(', ')}
-              </div>
+        <div className="my-5">
+          <InputLabel htmlFor="avatar">{h('user', 'avatar')}</InputLabel>
+          <div className="flex justify-start items-center gap-2">
+            {(data.user.avatar && data.user.avatar instanceof File) && (
+                <img
+                    src={URL.createObjectURL(data.user.avatar)}
+                    className="mt-2 w-20 h-20 rounded-full object-cover"
+                />
             )}
-          </div>
-
-          <div className="my-5">
-            <label htmlFor="roles_mask">Roles mask</label>
-            <input
-              type="number"
-              name="roles_mask"
-              id="roles_mask"
-              defaultValue={user.roles_mask}
-              className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
+            <FileInput
+                name="avatar"
+                id="avatar"
+                className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full file:mr-4 file:py-2 file:px-4
+               file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700
+               hover:file:bg-indigo-100 cursor-pointer"
+                onChange={(e) =>
+                    setData(
+                        'user.avatar',
+                        e.target.files[0],
+                    )
+                }
             />
-            {errors.roles_mask && (
-              <div className="text-red-500 px-3 py-2 font-medium">
-                {errors.roles_mask.join(', ')}
-              </div>
-            )}
           </div>
+          <InputError message={errors.user?.avatar} className="mt-2"/>
+        </div>
 
-          <div className="my-5">
-            <label htmlFor="confirmed_at">Confirmed at</label>
-            <input
-              type="datetime-local"
-              name="confirmed_at"
-              id="confirmed_at"
-              defaultValue={user.confirmed_at}
-              className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full"
-            />
-            {errors.confirmed_at && (
-              <div className="text-red-500 px-3 py-2 font-medium">
-                {errors.confirmed_at.join(', ')}
-              </div>
-            )}
-          </div>
+        <div className="my-5">
+          <InputLabel htmlFor="roles">{h('user', 'roles')}</InputLabel>
+          <Select
+              id="roles"
+              name="roles"
+              selectedValues={data.user.roles}
+              options={roles}
+              className="block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full cursor-pointer"
+              multiple={true}
+              onChange={(e) => {
+                const selectedOptions = Array.from(
+                    e.target.options,
+                )
+                    .filter(
+                        (option) => option.selected,
+                    )
+                    .map((option) => option.value);
 
-          <div className="inline">
-            <button
-              type="submit"
-              disabled={processing}
-              className="rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"
-            >
-              {submitText}
-            </button>
-          </div>
-        </>
-      )}
-    </InertiaForm>
+                setData('user.roles', selectedOptions);
+              }}
+          />
+          <InputError message={errors?.roles?.join(', ')} className="mt-2"/>
+        </div>
+
+        <div className="mt-4">
+          <PrimaryButton className="ms-4" disabled={processing}>
+            {t('common.Save')}
+          </PrimaryButton>
+        </div>
+      </form>
   )
 }

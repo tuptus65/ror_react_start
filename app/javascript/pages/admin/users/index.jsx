@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react'
+﻿import {Head, Link, router} from '@inertiajs/react'
 import AdminLayout from "@/layouts/AdminLayout";
 import Pagy from "@/components/Pagy";
 import { useI18n } from "@/utils/useI18n";
@@ -6,6 +6,7 @@ import {edit_admin_user_path, new_admin_user_path, admin_user_path} from "@/rout
 import {LiaEdit, LiaTrashAlt} from "react-icons/lia";
 import Table from "@/components/Table";
 import TableHead from "@/components/TableHead";
+import Avatar from "~/components/Avatar";
 
 export default function Index({ users, flash }) {
   const { t, h } = useI18n();
@@ -39,7 +40,10 @@ export default function Index({ users, flash }) {
             <tbody>
             {users.map((user) => (
                 <tr key={user.id} className="odd:bg-white even:bg-gray-100 hover:bg-gray-300">
-                  <td className="px-6 py-3 text-left">{user.name}</td>
+                  <td className="px-6 py-3 text-left flex justify-start items-center gap-2">
+                    <Avatar user={user} />
+                    {user.name}
+                  </td>
                   <td className="px-6 py-3 text-left">{user.email}</td>
                   <td className="px-6 py-3 text-left">{user.roles.join(', ')}</td>
                   <td className=" text-2xl">

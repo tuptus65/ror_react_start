@@ -20,11 +20,15 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    user&.root? || user&.admin? || (user?.id == record.id)
+    user&.root? || user&.admin? || (user&.id == record.id)
+  end
+
+  def create?
+    user&.root? || user&.admin?
   end
 
   def update?
-    user&.root? || user&.admin? || (user?.id == record.id)
+    user&.root? || user&.admin? || (user&.id == record.id)
   end
 
   def destroy?

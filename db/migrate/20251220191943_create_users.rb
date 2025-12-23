@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[8.1]
       t.string :name, null: false
       t.string :email, null: false
       t.string :password_digest
-      t.string :avatar
+      t.attachment :avatar
       t.integer :roles_mask, default: 0
       t.datetime :confirmed_at, default: nil
       t.string :confirmation_token, default: nil

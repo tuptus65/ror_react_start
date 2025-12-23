@@ -12,6 +12,7 @@
 
 # Ignore JetBrain env
 .idea
+.codeiumignore
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -55,4 +56,4 @@ node_modules
 /app/javascript/routes.d.ts
 
 # Ignore automatically generated i18n-js files.
-/app/javascript/locale.json
+/app/javascript/locales.json
