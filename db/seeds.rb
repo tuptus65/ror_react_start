@@ -8,17 +8,10 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-require 'active_record/fixtures'
-
-if User.count == 0
-  ActiveRecord::FixtureSet.create_fixtures('test/fixtures', 'users')
-  first_user = User.create!(
-    name: "root",
-    email: "root@domain.tld",
-    password: "password"
-  )
-
-  first_user.roles = [ :root ]
-  first_user.confirmed_at = Time.now
-  first_user.save
+if Rails.env.development?
+  require 'factory_bot_rails'
+  FactoryBot.create(:user, :root)
+  FactoryBot.create(:user, :admin)
+  FactoryBot.create(:user, :first)
+  FactoryBot.create(:user, :second)
 end

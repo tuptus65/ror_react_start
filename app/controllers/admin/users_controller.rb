@@ -48,9 +48,14 @@ class Admin::UsersController < InertiaController
     authorize @user
 
     if @user.save
-      redirect_to @user, notice: "User was successfully created."
+      redirect_to admin_users_url, notice: "User was successfully created."
     else
-      redirect_to new_admin_user_url, inertia: { errors: @user.errors }
+      # redirect_to new_admin_user_url, inertia: { errors: @user.errors }
+      render inertia: "admin/users/new", props: {
+        user: serialize_user(@user),
+        roles: all_roles,
+        errors: @user.errors
+      }
     end
   end
 

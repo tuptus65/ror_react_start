@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates :name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   include RoleModel
   roles :root, :admin, :user
@@ -34,6 +34,6 @@ class User < ApplicationRecord
   before_create :set_user_role, if: :new_record?
 
   def set_user_role
-    self.roles = :user
+    self.roles = :user if roles_mask.zero?
   end
 end

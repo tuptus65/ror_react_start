@@ -9,7 +9,7 @@ import {
 } from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {Link, usePage} from "@inertiajs/react";
-import {login_path, logout_path, admin_root_path, admin_users_path } from "@/routes.js";
+import {login_path, logout_path, admin_root_path, admin_users_path, profile_path } from "@/routes.js";
 import { useI18n } from "@/utils/useI18n";
 import Avatar from "~/components/Avatar";
 
@@ -25,10 +25,13 @@ function AdminNavigation() {
   const {url} = usePage()
 
   const navigation = [
-    {name: t('menu.Users'), href: admin_users_path()},
-    {name: 'Projects', href: '#'},
-    {name: 'Calendar', href: '#'},
+    // {name: 'Projects', href: '#'},
+    // {name: 'Calendar', href: '#'},
   ]
+
+  if (current_user.canViewUsers) {
+    navigation.push({name: t('menu.Users'), href: admin_users_path()})
+  }
 
   const isCurrent = (href) => {
     if (href === '#' || href === '') return false
@@ -52,7 +55,7 @@ function AdminNavigation() {
             </div>
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex shrink-0 items-center">
-                <Link href="/admin">
+                <Link href="/">
                   <img
                       alt="Turox logo"
                       src={turoxLogo}
@@ -99,18 +102,10 @@ function AdminNavigation() {
                     >
                       <MenuItem>
                         <a
-                            href="#"
+                            href={profile_path()}
                             className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                         >
-                          Your profile
-                        </a>
-                      </MenuItem>
-                      <MenuItem>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                        >
-                          Settings
+                          {t('menu.Profile')}
                         </a>
                       </MenuItem>
                       <MenuItem>

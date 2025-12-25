@@ -1,16 +1,17 @@
 import {Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {Link, usePage} from "@inertiajs/react";
-import {login_path, logout_path, admin_root_path } from "@/routes.js";
+import {login_path, logout_path, admin_root_path, profile_path } from "@/routes.js";
+import { useI18n } from "@/utils/useI18n";
 import Avatar from "~/components/Avatar";
 
 import turoxLogo from '../assets/turox_logo_full.png'
 
 const navigation = [
-  {name: 'Dashboard', href: '#', current: true},
-  {name: 'Team', href: '#', current: false},
-  {name: 'Projects', href: '#', current: false},
-  {name: 'Calendar', href: '#', current: false},
+  // {name: 'Dashboard', href: '#', current: true},
+  // {name: 'Team', href: '#', current: false},
+  // {name: 'Projects', href: '#', current: false},
+  // {name: 'Calendar', href: '#', current: false},
 ]
 
 function classNames(...classes) {
@@ -18,6 +19,7 @@ function classNames(...classes) {
 }
 
 function AppNavigation() {
+  const {t} = useI18n()
   const {current_user} = usePage().props
 
   return (
@@ -92,18 +94,10 @@ function AppNavigation() {
                     >
                       <MenuItem>
                         <a
-                            href="#"
+                            href={ profile_path() }
                             className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                         >
-                          Your profile
-                        </a>
-                      </MenuItem>
-                      <MenuItem>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                        >
-                          Settings
+                          {t('menu.Profile')}
                         </a>
                       </MenuItem>
                       <MenuItem>

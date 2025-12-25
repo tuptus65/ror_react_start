@@ -14,7 +14,6 @@ createInertiaApp({
   //
   // see https://inertia-rails.dev/guide/progress-indicators
   // progress: false,
-
   resolve: (name) => {
     const pages = import.meta.glob('../pages/**/*.jsx')
     const page = pages[`../pages/${name}.jsx`]

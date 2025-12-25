@@ -15,7 +15,7 @@ export default function Pagy() {
   `;
 
     return (
-        <nav className="flex items-center justify-center space-x-1 mt-6">
+        <nav id="pagination" className="flex items-center justify-center space-x-1 mt-6">
             {/* Pierwsza strona (<<) */}
             <Link
                 href="?page=1"

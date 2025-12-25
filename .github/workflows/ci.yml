@@ -81,13 +81,27 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install JS dependencies
+        run: npm install
+
+      - name: Build Vite assets
+        run: bin/vite build --mode test
+
       - name: Run tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test
+        run: |
+          bin/rails db:test:prepare
+          bundle exec rspec spec/requests
 
   system-test:
     runs-on: ubuntu-latest
@@ -120,13 +134,20 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@latest
+
+      - name: Set up ChromeDriver
+        uses: browser-actions/setup-chromedriver@latest
+
       - name: Run System Tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test:system
+        # Zmieniamy na rspec dla folderu system
+        run: |
+          bin/rails db:test:prepare
+          bundle exec rspec spec/system
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4

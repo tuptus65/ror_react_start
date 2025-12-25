@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get "login" => "session#new"
+  get "profile" => "profile#edit", as: :profile
+  put "profile" => "profile#update"
+  get "login" => "session#new", as: :login
   post "login" => "session#create"
   delete "logout" => "session#destroy"
   namespace :admin do

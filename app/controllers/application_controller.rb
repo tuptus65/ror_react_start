@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
   include Pagy::Method
 
+  skip_before_action :verify_authenticity_token, if: -> { Rails.env.test? }
+
   before_action :set_current_user
   after_action :verify_authorized
 
@@ -11,17 +13,17 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  private
-  def set_current_user
-    @current_user = User.unscoped.find_by(token: session[:token]) if session[:token]
-  end
-
   def current_user
     @current_user ||= Current.user
   end
 
   def log_in?
     !!current_user
+  end
+
+  private
+  def set_current_user
+    @current_user = User.unscoped.find_by(token: session[:token]) if session[:token]
   end
 
   def require_login
