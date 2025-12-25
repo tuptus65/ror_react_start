@@ -59,9 +59,9 @@ Aplikacja będzie dostępna pod adresem: http://localhost:3000
 ### Generowanie Tras i Tłumaczeń
 Pliki routes.js oraz tłumaczenia są ignorowane przez Git (.gitignore), ponieważ generują się automatycznie. Jeśli potrzebujesz ich ręcznej regeneracji:
 
-bundle exec rails js:routes – generuje plik app/javascript/routes.js (w środowisku testowym generowny automatycznie).
+*bundle exec rails js:routes* – generuje plik app/javascript/routes.js (w środowisku testowym generowny automatycznie).
 
-bundle exec i18n export – eksportuje tłumaczenia do JS.
+*bundle exec i18n export* – eksportuje tłumaczenia do JS.
 
 ---
 
@@ -69,7 +69,6 @@ bundle exec i18n export – eksportuje tłumaczenia do JS.
 Projekt posiada skonfigurowany zestaw testów RSpec (Request Specs oraz System Tests).
 
 ```bash
-
 # Uruchomienie wszystkich testów:
 bundle exec rspec
 
@@ -80,13 +79,13 @@ bundle exec rspec spec/system
 ### GitHub Actions (CI)
 Plik .github/workflows/ci.yml automatyzuje weryfikację każdego Pull Requesta w ramach czterech wyspecjalizowanych zadań:
 
-1. Scan Ruby: Statyczna analiza bezpieczeństwa (Brakeman) oraz skanowanie gemów pod kątem znanych podatności (Bundler Audit).
+1. **Scan Ruby**: Statyczna analiza bezpieczeństwa (Brakeman) oraz skanowanie gemów pod kątem znanych podatności (Bundler Audit).
 
-2. Lint: Sprawdzanie stylu kodowania Ruby zgodnie z regułami (RuboCop) z wykorzystaniem pamięci podręcznej (cache).
+2. **Lint**: Sprawdzanie stylu kodowania Ruby zgodnie z regułami (RuboCop) z wykorzystaniem pamięci podręcznej (cache).
 
-3. Test: Uruchomienie testów Request. Zadanie to instaluje Node.js, generuje trasy/tłumaczenia, buduje assety Vite w trybie testowym oraz przygotowuje bazę PostgreSQL.
+3. **Test**: Uruchomienie testów Request. Zadanie to instaluje Node.js, generuje trasy/tłumaczenia, buduje assety Vite w trybie testowym oraz przygotowuje bazę PostgreSQL.
 
-4. System-test: Uruchomienie pełnych testów systemowych (E2E). W przypadku niepowodzenia, artefakty (zrzuty ekranu) są zachowywane do debugowania.
+4. **System-test**: Uruchomienie pełnych testów systemowych (E2E). W przypadku niepowodzenia, artefakty (zrzuty ekranu) są zachowywane do debugowania.
 
 ---
 
