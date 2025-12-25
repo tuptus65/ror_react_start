@@ -45,7 +45,8 @@ admin@example.com – Administrator systemu.
 
 first@example.com – Standardowy użytkownik testowy.
 
-## Praca z projektem i uruchamianie
+---
+## 💻 Praca z projektem i uruchamianie
 ### Serwer deweloperski
 Aplikacja wykorzystuje bin/dev do równoległego uruchamiania serwera Rails oraz procesu Vite:
 
@@ -61,8 +62,8 @@ Pliki routes.js oraz tłumaczenia są ignorowane przez Git (.gitignore), poniewa
 bundle exec rails js:routes – generuje plik app/javascript/routes.js (w środowisku testowym generowny automatycznie).
 
 bundle exec i18n export – eksportuje tłumaczenia do JS.
-
-### Testowanie i Jakość Kodu
+---
+### 🧪 Testowanie i Jakość Kodu
 Projekt posiada skonfigurowany zestaw testów RSpec (Request Specs oraz System Tests).
 
 ```bash
@@ -84,8 +85,8 @@ Plik .github/workflows/ci.yml automatyzuje weryfikację każdego Pull Requesta w
 3. Test: Uruchomienie testów Request. Zadanie to instaluje Node.js, generuje trasy/tłumaczenia, buduje assety Vite w trybie testowym oraz przygotowuje bazę PostgreSQL.
 
 4. System-test: Uruchomienie pełnych testów systemowych (E2E). W przypadku niepowodzenia, artefakty (zrzuty ekranu) są zachowywane do debugowania.
-
-### Struktura folderów
+---
+### 📁 Struktura folderów
 app/javascript/Pages/ – Komponenty React pełniące rolę widoków.
 
 app/javascript/components/ – Reużywalne komponenty (np. Avatar z fallbackiem do Gravatar Initials).
