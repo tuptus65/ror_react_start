@@ -59,7 +59,7 @@ Aplikacja będzie dostępna pod adresem: http://localhost:3000
 ### Generowanie Tras i Tłumaczeń
 Pliki routes.js oraz tłumaczenia są ignorowane przez Git (.gitignore), ponieważ generują się automatycznie. Jeśli potrzebujesz ich ręcznej regeneracji:
 
-*bundle exec rails js:routes* – generuje plik app/javascript/routes.js (w środowisku testowym generowny automatycznie).
+*bundle exec rails js:routes* – generuje plik app/javascript/routes.js (w środowisku testowym generowany automatycznie).
 
 *bundle exec i18n export* – eksportuje tłumaczenia do JS.
 
