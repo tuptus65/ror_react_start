@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get "profile" => "profile#edit", as: :profile
+  put "profile" => "profile#update"
+  get "login" => "session#new", as: :login
+  post "login" => "session#create"
+  delete "logout" => "session#destroy"
+  namespace :admin do
+    root "dashboard#index"
+    resources :users
+  end
   get "home/index"
   root "home#index"
 
@@ -7,7 +16,7 @@ Rails.application.routes.draw do
     get "(*path)", to: redirect { |params, req| "#{req.protocol}localhost:#{req.port}/#{params[:path]}" }
   end
   # root 'inertia_example#index'
-  get 'inertia-example', to: 'inertia_example#index'
+  # get 'inertia-example', to: 'inertia_example#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

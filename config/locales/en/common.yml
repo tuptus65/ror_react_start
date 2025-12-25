@@ -1,0 +1,37 @@
+en:
+  time:
+    formats:
+      long: "%B %d, %Y %H:%M:%S"
+      middate: "%B %d, %Y"
+      short: "%b %d, %Y %H:%M"
+      shortdate: "%b %d, %Y"
+      numeric: "%m/%d/%Y %H:%M:%S"
+  date:
+    formats:
+      long: "%B %d, %Y"
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "1 error prohibited this form from being saved"
+          other: "%{count} errors prohibited this form from being saved"
+        body: "There were problems with the following fields:"
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
+  common:
+    Update: "Update"
+    List: "List"
+    Back: "Back"
+    Show: "Show"
+    Edit: "Edit"
+    Destroy: "Delete"
+    Create: "Create"
+    Reset: "Clear"
+    Are_you_sure: "Are you sure?"
+    Open: "Open"
+    Close: "Close"
+    Check: "Check"
+    Edit_header: "Edit: %{resource}"
+    Save: "Save"

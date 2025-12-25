@@ -7,8 +7,9 @@
     "vite-plugin-ruby": "^5.1.0"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "dev": "bundle exec i18n export && vite dev",
+    "build": "bundle exec i18n export && vite build",
+    "preview": "bundle exec i18n export && vite preview"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -19,8 +20,13 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "@vitejs/plugin-react": "^5.1.2",
+    "blueimp-md5": "^2.19.0",
+    "i18n-js": "^4.5.1",
+    "lodash": "^4.17.21",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "tailwindcss": "^4.1.18"
+    "react-icons": "^5.5.0",
+    "tailwindcss": "^4.1.18",
+    "vite-plugin-watch": "^0.3.1"
   }
 }

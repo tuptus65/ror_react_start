@@ -1,6 +1,8 @@
 import { createInertiaApp } from '@inertiajs/react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import '../routes.js'
+import '../../assets/stylesheets/application.tailwind.css'
 
 createInertiaApp({
   // Set default page title
@@ -12,11 +14,8 @@ createInertiaApp({
   //
   // see https://inertia-rails.dev/guide/progress-indicators
   // progress: false,
-
   resolve: (name) => {
-    const pages = import.meta.glob('../pages/**/*.jsx', {
-      eager: true,
-    })
+    const pages = import.meta.glob('../pages/**/*.jsx')
     const page = pages[`../pages/${name}.jsx`]
     if (!page) {
       console.error(`Missing Inertia page component: '${name}.jsx'`)
@@ -28,7 +27,7 @@ createInertiaApp({
     //
     // page.default.layout ||= (page) => (<Layout>{page}</Layout>)
 
-    return page
+    return typeof page === 'function' ? page() : page
   },
 
   setup({ el, App, props }) {

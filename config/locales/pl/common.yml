@@ -1,0 +1,38 @@
+pl:
+  time:
+    formats:
+      long: ! '%d %B %Y %H:%M:%S'
+      middate: ! '%d %B %Y'
+      short: '%d %b %Y %H:%M'
+      shortdate: '%d %b %Y'
+      numeric: ! '%d.%m.%Y %H:%M:%S'
+  date:
+    formats:
+      long: ! '%d %B %Y'
+  activerecord:
+    errors:
+      template:
+        header:
+          one:    "Formularz nie został zachowany z powodu jednego błędu"
+          few:    "Formularz nie został zachowany z powodu %{count} błędów"
+          other:  "Formularz nie został zachowany z powodu %{count} błędów"
+        body: "Błędy dotyczą następujących pól:"
+  helpers:
+    submit:
+      create: "Utwórz"
+      update: "Aktualizuj"
+  common:
+    Update: "Aktualizuj"
+    List: "Lista"
+    Back: "Wróć"
+    Show: "Pokaż"
+    Edit: "Edytuj"
+    Destroy: "Usuń"
+    Create: "Utwórz"
+    Reset: "Wyczyść"
+    Are_you_sure: "Jesteś pewien?"
+    Open: "Otwórz"
+    Close: "Zamknij"
+    Check: "Sprawdź"
+    Edit_header: "Edycja: %{resource}"
+    Save: "Zapisz"

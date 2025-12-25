@@ -16,6 +16,19 @@ module RorReactStart
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    config.generators do |g|
+      g.test_framework :rspec,
+                       fixtures: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: false,
+                       request_specs: true
+
+      # Jeśli używasz factory_bot zamiast fixtures:
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -23,5 +36,11 @@ module RorReactStart
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.i18n.default_locale = :pl
+    config.i18n.available_locales = [ :pl, :en ]
+    config.i18n.fallbacks = { pl: :en }
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
+    config.time_zone = "Warsaw"
   end
 end

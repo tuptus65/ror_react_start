@@ -1,0 +1,6 @@
+pl:
+  session:
+    new:
+      Login: "Login"
+      name: "Login"
+      password: "Hasło"

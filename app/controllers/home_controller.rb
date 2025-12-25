@@ -1,5 +1,6 @@
-class HomeController < ApplicationController
+class HomeController < InertiaController
   def index
-    render inertia: 'home/Index'
+    skip_authorization
+    render inertia: "home/Index"
   end
 end
