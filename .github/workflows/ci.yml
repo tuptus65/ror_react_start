@@ -81,17 +81,24 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Set up Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install JS dependencies
         run: npm install
 
-      - name: Build Vite assets
-        run: bin/vite build --mode test
+      - name: Generate JS Routes & Locales
+        run: |
+          bundle exec rails js:routes
+          bundle exec i18n export
+
+      - name: Precompile assets
+        run: bundle exec vite build --mode test
+        env:
+          RAILS_ENV: test
 
       - name: Run tests
         env:
@@ -134,17 +141,31 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@latest
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
 
-      - name: Set up ChromeDriver
-        uses: browser-actions/setup-chromedriver@latest
+      - name: Install JS dependencies
+        run: npm install
+
+      - name: Generate JS Routes & Locales
+        run: |
+          bundle exec rails js:routes
+          bundle exec i18n export
+
+      - name: Precompile assets
+        run: bundle exec vite build --mode test
+        env:
+          RAILS_ENV: test
 
       - name: Run System Tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        # Zmieniamy na rspec dla folderu system
+          # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          # REDIS_URL: redis://localhost:6379/0
         run: |
           bin/rails db:test:prepare
           bundle exec rspec spec/system
