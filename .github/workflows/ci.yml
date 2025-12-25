@@ -90,8 +90,10 @@ jobs:
       - name: Install JS dependencies
         run: npm install
 
-      - name: Generate JS Routes
-        run: bundle exec rails js:routes
+      - name: Generate JS Routes & Locales
+        run: |
+          bundle exec rails js:routes
+          bundle exec i18n export
 
       - name: Precompile assets
         run: bundle exec vite build --mode test
@@ -148,8 +150,10 @@ jobs:
       - name: Install JS dependencies
         run: npm install
 
-      - name: Generate JS Routes
-        run: bundle exec rails js:routes
+      - name: Generate JS Routes & Locales
+        run: |
+          bundle exec rails js:routes
+          bundle exec i18n export
 
       - name: Precompile assets
         run: bundle exec vite build --mode test
